@@ -1,25 +1,26 @@
 ---
 # HassGetState - name_state
-# example: is the sliding door open
-# slots: {name}
 
 language: "en"
 entities:
-  - name: "Sliding Door"
+  - name: "Garage Door"
     domain: "cover"
     state: "open"
+  - name: "Front Door"
+    domain: "lock"
+    state: "locked"
 
 tests:
   - sentences:
-      - "is the Sliding Door open"
+      - "is the garage door open"
     slots:
-      name: "Sliding Door"
+      name: "Garage Door"
       state: "open"
     response: "Yes"
 
   - sentences:
-      - "is the sliding door closed"
+      - "is the front door locked"
     slots:
-      name: "Sliding Door"
-      state: "closed"
-    response: "No, open"
+      name: "Front Door"
+      state: "locked"
+    response: "Yes"

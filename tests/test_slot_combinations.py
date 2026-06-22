@@ -5,6 +5,7 @@ import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime
+from functools import partial
 from typing import Any, Optional
 
 import pytest
@@ -19,6 +20,8 @@ from hassil import (
 )
 from jinja2 import BaseLoader, Environment, StrictUndefined
 
+from shared import get_areas, get_floors, get_matched_states, get_states, state_attr
+
 from . import (
     BASE_DIR,
     INTENTS_FILE,
@@ -28,6 +31,53 @@ from . import (
     SENTENCES_DIR,
     TESTS_DIR,
 )
+
+
+def _slug(name: str) -> str:
+    """Synthesize an id from a human name."""
+    return name.strip().casefold().replace(" ", "_")
+
+
+def _build_fixtures(test_dict: dict[str, Any]) -> dict[str, Any]:
+    """Convert a self-contained slot-combination test file into a fixtures dict
+    compatible with the shared get_states/get_areas/get_floors helpers."""
+    floors = [
+        {"id": _slug(f["name"]), "name": f["name"]} for f in test_dict.get("floors", [])
+    ]
+    areas = [
+        {
+            "id": _slug(a["name"]),
+            "name": a["name"],
+            **({"floor": _slug(a["floor"])} if a.get("floor") else {}),
+        }
+        for a in test_dict.get("areas", [])
+    ]
+    entities = []
+    for e in test_dict.get("entities", []):
+        entity = {
+            "id": f"{e['domain']}.{_slug(e['name'])}",
+            "name": e["name"],
+        }
+        if "state" in e:
+            entity["state"] = e["state"]
+        elif "state_with_unit" in e:
+            # No raw state given; use the human state_with_unit for rendering.
+            entity["state"] = e["state_with_unit"]
+        if e.get("area"):
+            entity["area"] = _slug(e["area"])
+        if e.get("attributes"):
+            entity["attributes"] = e["attributes"]
+        if "is_exposed" in e:
+            entity["is_exposed"] = e["is_exposed"]
+        entities.append(entity)
+    return {
+        "entities": entities,
+        "areas": areas,
+        "floors": floors,
+        "timers": test_dict.get("timers", []),
+        "media": test_dict.get("media", []),
+    }
+
 
 CONTEXT_AREA_NAME = "__context_area__"
 TEST_DATETIME = datetime(year=2013, month=9, day=17, hour=1, minute=2)
@@ -105,6 +155,15 @@ def lang_resources_fixture(language: str, intent_schemas: dict[str, Any]):
             with open(sentences_path, "r", encoding="utf-8") as sentences_file:
                 test_data_dict = yaml.safe_load(sentences_file)
 
+                # All sentence templates for this slot combination, across every
+                # group, so coverage is checked for the whole file (not just the
+                # first group a test sentence happens to match).
+                combo_templates = [
+                    sentence
+                    for group in test_data_dict["data"]
+                    for sentence in group["sentences"]
+                ]
+
                 for test_sentences_dict in test_data_dict["data"]:
                     test_slots = test_sentences_dict.get("slots", {})
                     test_metadata = test_sentences_dict.get("metadata", {})
@@ -123,9 +182,7 @@ def lang_resources_fixture(language: str, intent_schemas: dict[str, Any]):
 
                     # Attach metadata so we can check the slot combination later
                     test_metadata["slot_combination"] = combo_name
-                    test_metadata["sentence_templates"] = test_sentences_dict[
-                        "sentences"
-                    ]
+                    test_metadata["sentence_templates"] = combo_templates
 
                     # Convert to hassil format
                     intent_data.append(
@@ -192,6 +249,9 @@ def do_test_slot_combination(
                         "domain": e["domain"],
                         "state": e.get("state"),
                         "state_with_unit": e.get("state_with_unit"),
+                        "entity_id": f"{e['domain']}.{_slug(e['name'])}",
+                        "attributes": e.get("attributes", {}),
+                        "name": e["name"],
                     },
                 )
                 for e in test_dict.get("entities", [])
@@ -205,6 +265,12 @@ def do_test_slot_combination(
             [f["name"] for f in test_dict.get("floors", [])], name="floor"
         ),
     }
+
+    # Full HA-like fixtures for response rendering (state/query/state_attr).
+    fixtures = _build_fixtures(test_dict)
+    states = get_states(fixtures)
+    area_entries = get_areas(fixtures)
+    floor_entries = get_floors(fixtures)
 
     timers: list[dict[str, Any]] = test_dict.get("timers", [])
     media: list[dict[str, Any]] = test_dict.get("media", [])
@@ -275,6 +341,9 @@ def do_test_slot_combination(
             actual_response = _render_response(
                 lang_resources,
                 result,
+                states,
+                area_entries,
+                floor_entries,
                 template_slots={
                     "timers": group_timers,
                     "media": group_media[0] if group_media else None,
@@ -343,9 +412,12 @@ def do_test_slot_combination(
     )
 
 
-def _render_response(
-    lang_resources: LanguageResources,
+def _render_response(  # pylint: disable=too-many-positional-arguments
+    lang_resources: "LanguageResources",
     result: RecognizeResult,
+    states: list,
+    area_entries: list,
+    floor_entries: list,
     template_slots: Optional[dict[str, Any]] = None,
 ) -> str:
     intent_name = result.intent.name
@@ -362,35 +434,53 @@ def _render_response(
     if template_slots is None:
         template_slots = {}
 
-    template_slots.update({e_name: e.value for e_name, e in result.entities.items()})
-    template_args = {"slots": template_slots}
+    # Numeric slots (from range lists) render via the spoken text (e.g. "1",
+    # "30") so responses that branch on the text work as in Home Assistant;
+    # non-numeric slots render via their `out` value (e.g. "garage", "red").
+    def _slot_value(e):
+        v = e.value
+        if isinstance(v, bool):
+            return v
+        if isinstance(v, (int, float)) and e.text_clean:
+            return e.text_clean
+        return v
 
-    if name_entity := result.entities.get("name"):
-        assert name_entity.metadata
-        name_state = name_entity.metadata.get("state")
-        template_args["state"] = {
-            "domain": name_entity.metadata["domain"],
-            "state": name_state,
-            "state_with_unit": name_entity.metadata.get("state_with_unit")
-            or name_state,
-        }
-        if intent_name == "HassGetState":
-            query_state = template_args["state"]
-            query: dict[str, Any] = {"matched": [], "unmatched": []}
-            if match_state := result.entities.get("state"):
-                # Put entity in matched or unmatched list depending on its state
-                if name_state == match_state.value:
-                    query["matched"].append(query_state)
-                else:
-                    query["unmatched"].append(query_state)
-            else:
-                query["matched"].append(query_state)
+    template_slots.update(
+        {e_name: _slot_value(e) for e_name, e in result.entities.items()}
+    )
+    template_args: dict[str, Any] = {"slots": template_slots}
 
-            template_args["query"] = query
+    # Resolve matched/unmatched states for state/query/state_attr.
+    # The {name} slot resolves a single entity leniently (ignoring area/floor);
+    # otherwise match by area/floor/domain/device_class via shared logic.
+    name_entity = result.entities.get("name")
+    if name_entity is not None:
+        norm_name = name_entity.value.strip().casefold()
+        name_states = [s for s in states if s.name.strip().casefold() == norm_name]
+        state_entity = result.entities.get("state")
+        if state_entity is not None:
+            matched = [s for s in name_states if s.hass_state == state_entity.value]
+            unmatched = [s for s in name_states if s.hass_state != state_entity.value]
+        else:
+            matched, unmatched = name_states, []
+    else:
+        matched, unmatched = get_matched_states(
+            states, area_entries, floor_entries, result
+        )
+
+    template_args["state"] = (
+        matched[0] if matched else (unmatched[0] if unmatched else None)
+    )
+    template_args["query"] = {
+        "matched": matched,
+        "unmatched": unmatched,
+        "total_results": len(matched) + len(unmatched),
+    }
+    template_args["state_attr"] = partial(state_attr, matched)
 
     if intent_name == "HassGetCurrentDate":
         template_slots["date"] = TEST_DATETIME.date()
-    elif intent_name == "HassGetCurrentDate":
+    elif intent_name == "HassGetCurrentTime":
         template_slots["time"] = TEST_DATETIME.time()
 
     if timers := template_slots.get("timers"):
@@ -406,6 +496,9 @@ def _render_response(
             timer_dict.setdefault("rounded_hours_left", 0)
             timer_dict.setdefault("rounded_minutes_left", 0)
             timer_dict.setdefault("rounded_seconds_left", 0)
+        template_slots["canceled"] = len(timers)
+    else:
+        template_slots["canceled"] = 0
 
     response_text = lang_resources.template_env.from_string(response_template).render(
         template_args
