@@ -51,6 +51,30 @@ entities:
     attributes:
       volume_level: "50"
 
+  # VERIFY (machine-drafted): entities added for cover/lock/valve/scene/script name-based tests
+  - name: "Cyrten Chwith"
+    id: "cover.curtain_left"
+    area: "living_room"
+    state: "open"
+    attributes:
+      device_class: curtain
+
+  - name: "Drws Ffrynt"
+    id: "lock.front_door"
+    state: "locked"
+
+  - name: "Prif Falf"
+    id: "valve.main_valve"
+    state: "open"
+    attributes:
+      position: "100"
+
+  - name: "Modd Parti"
+    id: "scene.party_mode"
+
+  - name: "Modd Cudd"
+    id: "script.stealth_mode"
+
 timers:
   - is_active: false
     start_hours: 1

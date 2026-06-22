@@ -1,8 +1,33 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): agor wrth enw / open by name
+  - sentences:
+      - "agor cyrten chwith"
+      - "agor y cyrten chwith"
+    intent:
+      name: HassTurnOn
+      slots:
+        name: Cyrten Chwith
+      context:
+        domain: cover
+        device_class: curtain
+    response: "Wrthi'n agor"
+  # VERIFY (machine-drafted): agor drws garej / open the garage door (response omitted: device_class render)
+  - sentences:
+      - "agor drws garej"
+      - "agor y drws garej"
     intent:
       name: HassTurnOn
       slots:
         domain: cover
-        name: all
+        device_class: garage
+  # VERIFY (machine-drafted): agor llenni mewn ardal / open curtains in an area
+  - sentences:
+      - "agor llenni yn y gegin"
+      - "agor y llenni yn y gegin"
+    intent:
+      name: HassTurnOn
+      slots:
+        area: Gegin
+        domain: cover
+        device_class: curtain

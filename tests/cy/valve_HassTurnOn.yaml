@@ -1,8 +1,12 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted)
+  - sentences:
+      - "agor prif falf"
+      - "agor y prif falf"
     intent:
       name: HassTurnOn
       slots:
         domain: valve
-        name: all
+        name: Prif Falf
+    response: "Wrthi'n agor"

@@ -1,8 +1,13 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): agor falf wrth enw / open a valve by name
+      - sentences:
+          - "<agor>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+        requires_context:
+          domain: valve
         slots:
           domain: valve
-          name: all
+        response: valve

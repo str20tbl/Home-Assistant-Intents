@@ -1,8 +1,25 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): datgloi wrth enw / unlock by name
+  - sentences:
+      - "datgloi drws ffrynt"
+      - "datgloi y drws ffrynt"
     intent:
       name: HassTurnOff
       slots:
+        name: Drws Ffrynt
+      context:
+        domain: lock
+    response: "Wrthi'n datgloi"
+  # VERIFY (machine-drafted): datgloi cloeon mewn ardal / unlock locks in an area
+  - sentences:
+      - "datgloi drysau yn y gegin"
+      - "datgloi y drysau yn y gegin"
+      - "datgloi pob clo yn y gegin"
+    intent:
+      name: HassTurnOff
+      slots:
+        area: Gegin
         domain: lock
         name: all
+    response: "Wrthi'n datgloi"

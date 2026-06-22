@@ -1,8 +1,12 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted)
+  - sentences:
+      - "cau prif falf"
+      - "cau y prif falf"
     intent:
       name: HassTurnOff
       slots:
         domain: valve
-        name: all
+        name: Prif Falf
+    response: "Wrthi'n cau"

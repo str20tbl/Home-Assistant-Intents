@@ -1,8 +1,33 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): cau wrth enw / close by name
+  - sentences:
+      - "cau cyrten chwith"
+      - "cau y cyrten chwith"
+    intent:
+      name: HassTurnOff
+      slots:
+        name: Cyrten Chwith
+      context:
+        domain: cover
+        device_class: curtain
+    response: "Wrthi'n cau"
+  # VERIFY (machine-drafted): cau drws garej / close the garage door (response omitted: device_class render)
+  - sentences:
+      - "cau drws garej"
+      - "cau y drws garej"
     intent:
       name: HassTurnOff
       slots:
         domain: cover
-        name: all
+        device_class: garage
+  # VERIFY (machine-drafted): cau llenni mewn ardal / close curtains in an area
+  - sentences:
+      - "cau llenni yn y gegin"
+      - "cau y llenni yn y gegin"
+    intent:
+      name: HassTurnOff
+      slots:
+        area: Gegin
+        domain: cover
+        device_class: curtain

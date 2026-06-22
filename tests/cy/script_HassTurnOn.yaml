@@ -1,8 +1,14 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): rhedeg sgript wrth enw / run a script by name
+  - sentences:
+      - "rhedeg modd cudd"
+      - "actifadu modd cudd"
+      - "modd cudd ymlaen"
+      - "dechrau modd cudd sgript"
     intent:
       name: HassTurnOn
       slots:
         domain: script
-        name: all
+        name: Modd Cudd
+    response: "Wedi cychwyn"

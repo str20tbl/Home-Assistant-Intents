@@ -1,5 +1,20 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): troi dyfais ymlaen wrth enw / turn on a device by name
+      - sentences:
+          - "<troi>[ <y>|<y>| <fy>| <ein>] {name} (ymlaen|arno) [<yn_area_floor>]"
+          - "<troi> (ymlaen|arno)[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+          - "<cynnau>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+          - "<rhoi>[ <y>|<y>| <fy>| <ein>] {name} (ymlaen|arno) [<yn_area_floor>]"
+        excludes_context:
+          domain:
+            - binary_sensor
+            - cover
+            - lock
+            - scene
+            - script
+            - sensor
+            - valve

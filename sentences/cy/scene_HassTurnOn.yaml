@@ -1,8 +1,24 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): actifadu golygfa wrth enw / activate a scene by name
+      - sentences:
+          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] {name} [golygfa]"
+          - "[ <y>|<y>| <fy>| <ein>]{name} (ymlaen|arno)"
+          - "<newid_i>[ <y>|<y>] {name} [golygfa]"
+        requires_context:
+          domain: scene
         slots:
           domain: scene
-          name: all
+        response: scene
+      # VERIFY (machine-drafted): actifadu golygfa gydag ardal / activate a scene with an area
+      - sentences:
+          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] <area> {name} [golygfa]"
+          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] {name} [golygfa] <yn> <area>"
+        requires_context:
+          domain: scene
+        slots:
+          domain: scene
+        response: scene

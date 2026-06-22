@@ -1,5 +1,18 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOff:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): diffodd dyfais wrth enw / turn off a device by name
+      - sentences:
+          - "<troi>[ <y>|<y>| <fy>| <ein>] {name} (i ffwrdd|bant|allan) [<yn_area_floor>]"
+          - "<troi> (i ffwrdd|bant|allan)[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+          - "<diffodd>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+        excludes_context:
+          domain:
+            - binary_sensor
+            - cover
+            - lock
+            - scene
+            - script
+            - sensor

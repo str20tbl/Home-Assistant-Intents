@@ -1,8 +1,19 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOff:
     data:
-      - sentences: []
-        slots:
+      # VERIFY (machine-drafted): datgloi wrth enw / unlock by name
+      - sentences:
+          - "<datgloi>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+        requires_context:
           domain: lock
-          name: all
+        response: lock
+      # VERIFY (machine-drafted): datgloi cloeon mewn ardal / unlock locks in an area
+      - sentences:
+          - "<datgloi> [<pob> [o|o'r]][ <y>|<y>] <lockable> [<yn_area_floor>]"
+          - "<datgloi> [<pob> [o|o'r]][ <y>|<y>] <area> [<lockable>]"
+        slots:
+          domain: "lock"
+          name: "all"
+        response: lock

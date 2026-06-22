@@ -1,8 +1,25 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): actifadu golygfa wrth enw / activate a scene by name
+  - sentences:
+      - "actifadu modd parti"
+      - "actifadu modd parti golygfa"
+      - "modd parti ymlaen"
+      - "newid i modd parti golygfa"
     intent:
       name: HassTurnOn
       slots:
         domain: scene
-        name: all
+        name: Modd Parti
+    response: "Wedi'i actifadu"
+  # VERIFY (machine-drafted): actifadu golygfa gydag ardal / activate a scene with an area
+  - sentences:
+      - "actifadu modd parti yn y gegin"
+      - "actifadu gegin modd parti"
+    intent:
+      name: HassTurnOn
+      slots:
+        area: Gegin
+        domain: scene
+        name: Modd Parti
+    response: "Wedi'i actifadu"

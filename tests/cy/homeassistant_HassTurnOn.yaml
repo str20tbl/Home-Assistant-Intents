@@ -1,6 +1,20 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): troi dyfais ymlaen wrth enw / turn on a device by name
+  - sentences:
+      - "troi ceiling fan ymlaen"
+      - "troi y ceiling fan ymlaen"
+      - "cynnau ceiling fan"
     intent:
       name: HassTurnOn
-      slots: {}
+      slots:
+        name: Ceiling Fan
+    response: "Wedi troi y ffan ymlaen"
+  - sentences:
+      - "troi kitchen switch ymlaen"
+      - "rhoi kitchen switch ymlaen"
+    intent:
+      name: HassTurnOn
+      slots:
+        name: Kitchen Switch
+    response: "Wedi troi y switsh ymlaen"

@@ -1,8 +1,13 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): rhedeg sgript wrth enw / run a script by name
+      - sentences:
+          - "[(<rhedeg>|<actifadu>|<troi>)][ <y>|<y>| <fy>| <ein>] {name} [sgript] [(ymlaen|arno)]"
+        requires_context:
+          domain: script
         slots:
           domain: script
-          name: all
+        response: script

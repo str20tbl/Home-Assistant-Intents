@@ -1,8 +1,24 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): cloi wrth enw / lock by name
+  - sentences:
+      - "cloi drws ffrynt"
+      - "cloi y drws ffrynt"
     intent:
       name: HassTurnOn
       slots:
+        name: Drws Ffrynt
+      context:
         domain: lock
-        name: all
+    response: "Wrthi'n cloi"
+  # VERIFY (machine-drafted): cloi cloeon mewn ardal / lock locks in an area
+  - sentences:
+      - "cloi drysau yn y gegin"
+      - "cloi y drysau yn y gegin"
+      - "cloi pob clo yn y gegin"
+    intent:
+      name: HassTurnOn
+      slots:
+        area: Gegin
+        domain: lock
+    response: "Wrthi'n cloi"

@@ -1,8 +1,14 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): troi ffaniau ymlaen mewn ardal / turn on fans in an area
+      - sentences:
+          - "<troi>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) (ymlaen|arno) <yn> <area>"
+          - "<troi>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) <yn> <area> (ymlaen|arno)"
+          - "<cynnau>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) <yn> <area>"
         slots:
           domain: fan
           name: all
+        response: fans_area

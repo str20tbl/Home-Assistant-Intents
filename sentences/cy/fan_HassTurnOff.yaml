@@ -1,8 +1,22 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOff:
     data:
-      - sentences: []
+      # VERIFY (machine-drafted): diffodd ffaniau mewn ardal / turn off fans in an area
+      - sentences:
+          - "<troi>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) (i ffwrdd|bant|allan) <yn> <area>"
+          - "<troi>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) <yn> <area> (i ffwrdd|bant|allan)"
+          - "<diffodd>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) <yn> <area>"
         slots:
           domain: fan
           name: all
+        response: fans_area
+      # VERIFY (machine-drafted): diffodd pob ffan ym mhobman / turn off all fans everywhere
+      - sentences:
+          - "<troi>[ <y>|<y>| <fy>| <ein>] <pob> [o|o'r] (ffan|ffaniau) (i ffwrdd|bant|allan) [<ym_mhobman>] [i gyd]"
+          - "<diffodd>[ <y>|<y>| <fy>| <ein>] <pob> [o|o'r] (ffan|ffaniau) [<ym_mhobman>] [i gyd]"
+        slots:
+          domain: fan
+          name: all
+        response: fan_all

@@ -1,8 +1,15 @@
 language: cy
 tests:
-  - sentences: []
+  # VERIFY (machine-drafted): troi ffaniau ymlaen mewn ardal / turn on fans in an area
+  - sentences:
+      - "troi'r ffaniau ymlaen yn y gegin"
+      - "troi ffan yn y gegin ymlaen"
+      - "cynnau ffaniau yn y gegin"
+      - "troi pob ffan yn y gegin ymlaen"
     intent:
       name: HassTurnOn
       slots:
+        area: Gegin
         domain: fan
         name: all
+    response: "Wedi troi'r ffaniau ymlaen"

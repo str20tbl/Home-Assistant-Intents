@@ -462,6 +462,17 @@ expansion_rules:
   gosod: "([g|ng]osod|[g|ng]wneud|newid|(t|d|nh|th)roi)"
   gosod_rhif: "([g|ng]osod|newid|(t|d|nh|th)roi [(i fyny|i lawr)]|(c|g|ngh|ch)ynyddu|[g|ng]ostwng|[g|ng]wneud)"
 
+  # VERIFY (machine-drafted): cloi/datgloi/lockable/actifadu/rhedeg added for lock/scene/script
+  # Cloi a datgloi / Lock and unlock
+  cloi: "((c|g|ngh|ch)loi|(c|g|ngh|ch)lo|(c|g|ngh|ch)lowch)"
+  datgloi: "((d|dd|n)atgloi|(d|dd|n)atglo|(d|dd|n)atglowch)"
+  lockable: "((c|g|ngh|ch)lo[eon|ion]|(d|dd|n)rws|(d|dd|n)rysau|ffenestr[i]|[g|ng]iât|[g|ng]atiau)"
+
+  # Actifadu golygfa/sgript / Activate scene/script
+  actifadu: "(actifadu|gweithredu|gweithredwch|sbarduno)"
+  rhedeg: "((rh|r)edeg|(rh|r)ed|(rh|r)edwch|(d|dd|n)echrau|(c|g|ngh|ch)ychwyn)"
+  newid_i: "(newid (i|i'r)|(t|d|nh|th)rosglwyddo (i|i'r))"
+
   # Arddodiaid / Prepositions
   yn: "(yn|yng|ym)"
   i: "(i|i'r)"

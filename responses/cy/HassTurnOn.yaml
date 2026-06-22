@@ -2,6 +2,7 @@ language: cy
 responses:
   intents:
     HassTurnOn:
+      # VERIFY (machine-drafted): default verb phrase + fans_area/cover/cover_device_class/scene/script/lock/valve below need native-speaker review
       default: >-
         {% set translations = {
           "button": "y botwm",
@@ -22,14 +23,14 @@ responses:
           "media_player": "y chwaraewr cyfryngau",
           "lawn_mower": "y peiriant lladd gwair"
         } %}
-        Turned on {{ translations.get(state.domain) }}
+        Wedi troi {{ translations.get(state.domain) }} ymlaen
       lights_area: "Wedi troi'r goleuadau ymlaen"
       lights_floor: "Wedi troi'r goleuadau ymlaen"
       light_all: "Wedi troi i gyd o'r goleuadau ymlaen"
-      fans_area: "TODO: Turned on the fans"
-      cover: "TODO: Opening"
-      cover_device_class: "TODO: Opening the {{ slots.device_class }}"
-      scene: "TODO: Activated"
-      script: "TODO: Started"
-      lock: "TODO: Locking"
-      valve: "TODO: Opening"
+      fans_area: "Wedi troi'r ffaniau ymlaen"
+      cover: "Wrthi'n agor"
+      cover_device_class: "Wrthi'n agor y {{ slots.device_class }}"
+      scene: "Wedi'i actifadu"
+      script: "Wedi cychwyn"
+      lock: "Wrthi'n cloi"
+      valve: "Wrthi'n agor"

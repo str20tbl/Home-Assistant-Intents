@@ -1,8 +1,18 @@
-language: cy
+---
+language: "cy"
 intents:
   HassTurnOn:
     data:
-      - sentences: []
-        slots:
+      # VERIFY (machine-drafted): cloi wrth enw / lock by name
+      - sentences:
+          - "<cloi>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
+        requires_context:
           domain: lock
-          name: all
+        response: lock
+      # VERIFY (machine-drafted): cloi cloeon mewn ardal / lock locks in an area
+      - sentences:
+          - "<cloi> [<pob> [o|o'r]][ <y>|<y>] <lockable> [<yn_area_floor>]"
+          - "<cloi> [<pob> [o|o'r]][ <y>|<y>] <area> [<lockable>]"
+        slots:
+          domain: "lock"
+        response: lock
