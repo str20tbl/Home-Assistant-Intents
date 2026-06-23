@@ -1,6 +1,6 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted)
+
   - sentences:
       - "agor prif falf"
       - "agor y prif falf"

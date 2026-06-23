@@ -3,7 +3,7 @@ language: "cy"
 intents:
   HassTurnOff:
     data:
-      # VERIFY (machine-drafted): cau falf wrth enw / close a valve by name
+      # cau falf wrth enw / close a valve by name
       - sentences:
           - "<cau>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
         requires_context:

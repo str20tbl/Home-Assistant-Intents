@@ -1,19 +1,19 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted): diffodd dyfais wrth enw / turn off a device by name
+  # diffodd dyfais wrth enw / turn off a device by name
   - sentences:
-      - "troi ceiling fan i ffwrdd"
-      - "diffodd ceiling fan"
+      - "troi ffan nenfwd i ffwrdd"
+      - "diffodd ffan nenfwd"
     intent:
       name: HassTurnOff
       slots:
-        name: Ceiling Fan
+        name: Ffan Nenfwd
     response: "Wedi diffodd y ffan"
   - sentences:
-      - "troi kitchen switch i ffwrdd"
-      - "diffodd kitchen switch"
+      - "troi switsh cegin i ffwrdd"
+      - "diffodd switsh cegin"
     intent:
       name: HassTurnOff
       slots:
-        name: Kitchen Switch
+        name: Switsh Cegin
     response: "Wedi diffodd y switsh"

@@ -3,7 +3,7 @@ language: "cy"
 intents:
   HassTurnOn:
     data:
-      # VERIFY (machine-drafted): troi ffaniau ymlaen mewn ardal / turn on fans in an area
+      # troi ffaniau ymlaen mewn ardal / turn on fans in an area
       - sentences:
           - "<troi>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) (ymlaen|arno) <yn> <area>"
           - "<troi>[ <y>|<y>| <fy>| <ein>] [<pob> [o|o'r]] (ffan|ffaniau) <yn> <area> (ymlaen|arno)"

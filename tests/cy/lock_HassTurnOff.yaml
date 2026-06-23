@@ -1,6 +1,6 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted): datgloi wrth enw / unlock by name
+  # datgloi wrth enw / unlock by name
   - sentences:
       - "datgloi drws ffrynt"
       - "datgloi y drws ffrynt"
@@ -11,7 +11,7 @@ tests:
       context:
         domain: lock
     response: "Wrthi'n datgloi"
-  # VERIFY (machine-drafted): datgloi cloeon mewn ardal / unlock locks in an area
+  # datgloi cloeon mewn ardal / unlock locks in an area
   - sentences:
       - "datgloi drysau yn y gegin"
       - "datgloi y drysau yn y gegin"

@@ -3,20 +3,20 @@ language: "cy"
 intents:
   HassTurnOn:
     data:
-      # VERIFY (machine-drafted): agor gorchudd wrth enw / open a cover by name
+      # agor gorchudd wrth enw / open a cover by name
       - sentences:
           - "<agor>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
         requires_context:
           domain: cover
         response: cover
-      # VERIFY (machine-drafted): agor yn ôl dosbarth dyfais (ac ardal) / open by device_class (optionally in an area)
+      # agor yn ôl dosbarth dyfais (ac ardal) / open by device_class (optionally in an area)
       - sentences:
           - "<agor>[ <y>|<y>| <fy>| <ein>] {cover_classes:device_class} [<yn_area_floor>]"
           - "<agor>[ <y>|<y>| <fy>| <ein>] <area> {cover_classes:device_class}"
         slots:
           domain: cover
         response: cover_device_class
-      # VERIFY (machine-drafted): agor yn ôl dosbarth dyfais yn yr un ardal â lloeren / device_class here
+      # agor yn ôl dosbarth dyfais yn yr un ardal â lloeren / device_class here
       - sentences:
           - "<agor>[ <y>|<y>| <fy>| <ein>] {cover_classes:device_class} [<yma>]"
         slots:

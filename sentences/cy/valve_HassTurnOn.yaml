@@ -3,7 +3,7 @@ language: "cy"
 intents:
   HassTurnOn:
     data:
-      # VERIFY (machine-drafted): agor falf wrth enw / open a valve by name
+      # agor falf wrth enw / open a valve by name
       - sentences:
           - "<agor>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
         requires_context:

@@ -2,7 +2,6 @@ language: cy
 responses:
   intents:
     HassTurnOff:
-      # VERIFY (machine-drafted): default block translated to Welsh (was English); needs native-speaker review
       default: >-
         {% set translations = {
           "button": "y botwm",
@@ -26,10 +25,10 @@ responses:
         Wedi diffodd {{ translations.get(state.domain) }}
       lights_area: "Wedi diffodd y goleuadau"
       lights_floor: "Wedi diffodd y goleuadau"
-      fans_area: "Wedi diffodd y ffaniau"
+      fans_area: "Wedi diffodd y ffannau"
       cover: "Wrthi'n cau"
-      light_all: "Wedi diffodd i gyd o'r goleuadau"
-      fan_all: "Wedi diffodd y ffaniau i gyd"
+      light_all: "Wedi diffodd yr holl oleuadau"
+      fan_all: "Wedi diffodd yr holl ffannau"
       cover_device_class: "Wrthi'n cau'r {{ slots.device_class }}"
       lock: "Wrthi'n datgloi"
       valve: "Wrthi'n cau"

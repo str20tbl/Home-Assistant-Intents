@@ -3,20 +3,20 @@ language: "cy"
 intents:
   HassTurnOff:
     data:
-      # VERIFY (machine-drafted): cau gorchudd wrth enw / close a cover by name
+      # cau gorchudd wrth enw / close a cover by name
       - sentences:
           - "<cau>[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"
         requires_context:
           domain: cover
         response: cover
-      # VERIFY (machine-drafted): cau yn ôl dosbarth dyfais (ac ardal) / close by device_class (optionally in an area)
+      # cau yn ôl dosbarth dyfais (ac ardal) / close by device_class (optionally in an area)
       - sentences:
           - "<cau>[ <y>|<y>| <fy>| <ein>] {cover_classes:device_class} [<yn_area_floor>]"
           - "<cau>[ <y>|<y>| <fy>| <ein>] <area> {cover_classes:device_class}"
         slots:
           domain: cover
         response: cover_device_class
-      # VERIFY (machine-drafted): cau yn ôl dosbarth dyfais yn yr un ardal â lloeren / device_class here
+      # cau yn ôl dosbarth dyfais yn yr un ardal â lloeren / device_class here
       - sentences:
           - "<cau>[ <y>|<y>| <fy>| <ein>] {cover_classes:device_class} [<yma>]"
         slots:

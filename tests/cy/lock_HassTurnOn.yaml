@@ -1,6 +1,6 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted): cloi wrth enw / lock by name
+  # cloi wrth enw / lock by name
   - sentences:
       - "cloi drws ffrynt"
       - "cloi y drws ffrynt"
@@ -11,7 +11,7 @@ tests:
       context:
         domain: lock
     response: "Wrthi'n cloi"
-  # VERIFY (machine-drafted): cloi cloeon mewn ardal / lock locks in an area
+  # cloi cloeon mewn ardal / lock locks in an area
   - sentences:
       - "cloi drysau yn y gegin"
       - "cloi y drysau yn y gegin"

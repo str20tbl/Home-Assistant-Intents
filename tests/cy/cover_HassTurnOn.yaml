@@ -1,6 +1,6 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted): agor wrth enw / open by name
+  # agor wrth enw / open by name
   - sentences:
       - "agor cyrten chwith"
       - "agor y cyrten chwith"
@@ -12,7 +12,7 @@ tests:
         domain: cover
         device_class: curtain
     response: "Wrthi'n agor"
-  # VERIFY (machine-drafted): agor drws garej / open the garage door (response omitted: device_class render)
+  # agor drws garej / open the garage door (response omitted: device_class render)
   - sentences:
       - "agor drws garej"
       - "agor y drws garej"
@@ -21,7 +21,7 @@ tests:
       slots:
         domain: cover
         device_class: garage
-  # VERIFY (machine-drafted): agor llenni mewn ardal / open curtains in an area
+  #   agor llenni mewn ardal / open curtains in an area
   - sentences:
       - "agor llenni yn y gegin"
       - "agor y llenni yn y gegin"

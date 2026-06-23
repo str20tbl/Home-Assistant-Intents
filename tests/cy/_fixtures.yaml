@@ -51,7 +51,7 @@ entities:
     attributes:
       volume_level: "50"
 
-  # VERIFY (machine-drafted): entities added for cover/lock/valve/scene/script name-based tests
+  # entities added for cover/lock/valve/scene/script name-based tests
   - name: "Cyrten Chwith"
     id: "cover.curtain_left"
     area: "living_room"

@@ -1,19 +1,19 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted): diffodd ffaniau mewn ardal / turn off fans in an area
+  # diffodd ffaniau mewn ardal / turn off fans in an area
   - sentences:
-      - "diffodd y ffaniau yn y gegin"
-      - "troi ffan yn y gegin i ffwrdd"
+      - "diffodd y ffannau yn y gegin"
+      - "troi ffannau yn y gegin i ffwrdd"
       - "troi pob ffan yn y gegin allan"
-      - "troi'r ffaniau i ffwrdd yn y gegin"
+      - "troi'r ffannau i ffwrdd yn y gegin"
     intent:
       name: HassTurnOff
       slots:
         area: Gegin
         domain: fan
         name: all
-    response: "Wedi diffodd y ffaniau"
-  # VERIFY (machine-drafted): diffodd pob ffan ym mhobman / turn off all fans everywhere
+    response: "Wedi diffodd y ffannau"
+  # diffodd pob ffan ym mhobman / turn off all fans everywhere
   - sentences:
       - "diffodd pob ffan"
       - "troi pob ffan i ffwrdd ym mhobman"
@@ -22,4 +22,4 @@ tests:
       slots:
         domain: fan
         name: all
-    response: "Wedi diffodd y ffaniau i gyd"
+    response: "Wedi diffodd y ffannau i gyd"

@@ -3,7 +3,7 @@ language: "cy"
 intents:
   HassTurnOn:
     data:
-      # VERIFY (machine-drafted): troi dyfais ymlaen wrth enw / turn on a device by name
+      #   troi dyfais ymlaen wrth enw / turn on a device by name
       - sentences:
           - "<troi>[ <y>|<y>| <fy>| <ein>] {name} (ymlaen|arno) [<yn_area_floor>]"
           - "<troi> (ymlaen|arno)[ <y>|<y>| <fy>| <ein>] {name} [<yn_area_floor>]"

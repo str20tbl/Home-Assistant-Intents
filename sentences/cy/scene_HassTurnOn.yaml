@@ -3,20 +3,20 @@ language: "cy"
 intents:
   HassTurnOn:
     data:
-      # VERIFY (machine-drafted): actifadu golygfa wrth enw / activate a scene by name
+      # actifadu golygfa wrth enw / activate a scene by name
       - sentences:
-          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] {name} [golygfa]"
-          - "[ <y>|<y>| <fy>| <ein>]{name} (ymlaen|arno)"
-          - "<newid_i>[ <y>|<y>] {name} [golygfa]"
+          - "[<actifadu>] [golygfa][ <y>|<y>| <fy>| <ein>] {name}"
+          - "[<y>|<fy>|<ein>] {name} (ymlaen|arno)"
+          - "<newid_i> [golygfa] {name}"
         requires_context:
           domain: scene
         slots:
           domain: scene
         response: scene
-      # VERIFY (machine-drafted): actifadu golygfa gydag ardal / activate a scene with an area
+      # actifadu golygfa gydag ardal / activate a scene with an area
       - sentences:
-          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] <area> {name} [golygfa]"
-          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] {name} [golygfa] <yn> <area>"
+          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] [golygfa] <area> {name}"
+          - "[<actifadu>][ <y>|<y>| <fy>| <ein>] [golygfa] {name} <yn> <area>"
         requires_context:
           domain: scene
         slots:
