@@ -1,6 +1,6 @@
 language: cy
 tests:
-  # VERIFY (machine-drafted): troi ffaniau ymlaen mewn ardal / turn on fans in an area
+  # troi ffaniau ymlaen mewn ardal / turn on fans in an area
   - sentences:
       - "troi'r ffaniau ymlaen yn y gegin"
       - "troi ffan yn y gegin ymlaen"
