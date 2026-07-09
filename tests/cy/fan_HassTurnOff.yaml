@@ -22,4 +22,4 @@ tests:
       slots:
         domain: fan
         name: all
-    response: "Wedi diffodd y ffannau i gyd"
+    response: "Wedi diffodd yr holl ffannau"

@@ -107,7 +107,7 @@ tests:
       name: HassTurnOn
       slots:
         domain: light
-    response: "Wedi troi i gyd o'r goleuadau ymlaen"
+    response: "Wedi troi'r holl oleuadau ymlaen"
 
   # Troi goleuadau ymlaen yn yr un ardal â dyfais lloeren - Turn on lights in same area as satellite device
   - sentences:

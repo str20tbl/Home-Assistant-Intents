@@ -470,7 +470,7 @@ expansion_rules:
   # Actifadu golygfa/sgript / Activate scene/script
   actifadu: "(actifadu|actifadwch|gweithredu|gweithredwch|sbarduno|sbardunwch)"
   rhedeg: "((rh|r)edeg|(rh|r)ed|(rh|r)eda|(rh|r)edwch|(d|dd|n)echrau|(d|dd|n)echreuwch|(d|dd|n)echreua|(c|g|ngh|ch)ychwyn|(c|g|ngh|ch)ychwyna|(c|g|ngh|ch)ychwynwch)"
-  newid_i: "(newid (i|i'r)|(newida (i|i'r)|newidiwch (i|i'r)|(t|d|nh|th)rosglwyddo (i|i'r)|(t|d|nh|th)rosglwydda (i|i'r)|(t|d|nh|th)rosglwyddwch (i|i'r))"
+  newid_i: "(newid (i|i'r)|newida (i|i'r)|newidia (i|i'r)|newidwch (i|i'r)|newidiwch (i|i'r)|(t|d|nh|th)rosglwyddo (i|i'r)|(t|d|nh|th)rosglwydda (i|i'r)|(t|d|nh|th)rosglwyddwch (i|i'r))"
 
   # Arddodiaid / Prepositions
   yn: "(yn|yng|ym)"

@@ -5,9 +5,9 @@ intents:
     data:
       # actifadu golygfa wrth enw / activate a scene by name
       - sentences:
-          - "[<actifadu>] [golygfa][ <y>|<y>| <fy>| <ein>] {name}"
+          - "[<actifadu>] [golygfa][ <y>|<y>| <fy>| <ein>] {name} [<area>]"
           - "[<y>|<fy>|<ein>] {name} (ymlaen|arno)"
-          - "<newid_i> [golygfa] {name}"
+          - "<newid_i> [[g]olygfa] {name}"
         requires_context:
           domain: scene
         slots:

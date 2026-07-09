@@ -5,7 +5,7 @@ tests:
       - "actifadu modd parti"
       - "actifadu golygfa modd parti"
       - "modd parti ymlaen"
-      - "newid i olygfa modd parti "
+      - "newid i olygfa modd parti"
     intent:
       name: HassTurnOn
       slots:
@@ -14,8 +14,17 @@ tests:
     response: "Wedi'i actifadu"
   # actifadu golygfa gydag ardal / activate a scene with an area
   - sentences:
+      - "actifadu modd parti cegin"
+      - "modd parti cegin"
+    intent:
+      name: HassTurnOn
+      slots:
+        area: Cegin
+        domain: scene
+        name: Modd Parti
+    response: "Wedi'i actifadu"
+  - sentences:
       - "actifadu modd parti yn y gegin"
-      - "actifadu modd parti gegin"
     intent:
       name: HassTurnOn
       slots:

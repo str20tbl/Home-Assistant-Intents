@@ -4,23 +4,23 @@ responses:
     HassTurnOn:
       default: >-
         {% set translations = {
-          "button": "y botwm",
-          "camera": "y camera",
-          "input_button": "y botwm",
-          "alarm_control_panel": "y larwm",
-          "automation": "yr awtomasiwn",
-          "fan": "y ffan",
-          "climate": "y thermostat",
-          "humidifier": "y lleithydd",
-          "input_boolean": "y switsh",
+          "button": "botwm",
+          "camera": "camera",
+          "input_button": "botwm",
+          "alarm_control_panel": "larwm",
+          "automation": "awtomasiwn",
+          "fan": "ffan",
+          "climate": "thermostat",
+          "humidifier": "lleithydd",
+          "input_boolean": "switsh",
           "siren": "y seiren",
           "water_heater": "y gwresogydd dŵr",
-          "light": "y golau",
-          "switch": "y switsh",
-          "remote": "y teclyn rheoli o bell",
-          "vacuum": "y sugnwr llwch",
-          "media_player": "y chwaraewr cyfryngau",
-          "lawn_mower": "y peiriant lladd gwair"
+          "light": "golau",
+          "switch": "switsh",
+          "remote": "teclyn rheoli o bell",
+          "vacuum": "sugnwr llwch",
+          "media_player": "chwaraewr cyfryngau",
+          "lawn_mower": "peiriant lladd gwair"
         } %}
         Wedi troi'r {{ translations.get(state.domain) }} ymlaen
       lights_area: "Wedi troi'r goleuadau ymlaen"
@@ -29,7 +29,7 @@ responses:
       fans_area: "Wedi troi'r ffaniau ymlaen"
       cover: "Wrthi'n agor"
       cover_device_class: "Wrthi'n agor <y> {{ slots.device_class }}"
-      scene: "Wedi'(i|u) [h]actifadu"
-      script: "Wedi'(i|u) (c|g|ch)ychwyn"
+      scene: "Wedi'i actifadu"
+      script: "Wedi cychwyn"
       lock: "Wrthi'n cloi"
       valve: "Wrthi'n agor"

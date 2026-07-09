@@ -9,7 +9,7 @@ tests:
       name: HassTurnOn
       slots:
         name: Ffan Nenfwd
-    response: "Wedi troi y ffan ymlaen"
+    response: "Wedi troi'r ffan ymlaen"
   - sentences:
       - "troi switsh cegin ymlaen"
       - "rhoi switsh cegin ymlaen"
@@ -17,4 +17,4 @@ tests:
       name: HassTurnOn
       slots:
         name: Switsh Cegin
-    response: "Wedi troi y switsh ymlaen"
+    response: "Wedi troi'r switsh ymlaen"

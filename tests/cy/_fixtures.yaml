@@ -11,7 +11,7 @@ floors:
   - name: "Islawr"
     id: "basement_id"
 areas:
-  - name: (G|C|Ch)egin
+  - name: "(G|C|Ch)egin"
     id: kitchen
   - name: "[Hy|Y]stafell Fyw"
     id: living_room
@@ -19,14 +19,16 @@ areas:
     id: bedroom
   - name: Garage
     id: garage
+  - name: Nenfwd
+    id: ceiling
 entities:
   - name: Bedroom Lamp
     id: light.bedroom_lamp
     area: bedroom
-  - name: Kitchen Switch
+  - name: Switsh Cegin
     id: switch.kitchen
     area: kitchen
-  - name: Ceiling Fan
+  - name: Ffan Nenfwd
     id: fan.ceiling
     area: living_room
 
